@@ -21,4 +21,5 @@ jobs:
         fi
     - name: Run Maven tests
       run: mvn test
+      working-directory: ${{ github.workspace }}
     - run: echo "🎉 This job uses runner scale set runners!"
