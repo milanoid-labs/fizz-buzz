@@ -14,6 +14,11 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: ${{ matrix.java-version }}
+    - name: Install Maven
+      run: |
+        if ! command -v mvn &> /dev/null; then
+          sudo apt-get update && sudo apt-get install -y maven
+        fi
     - name: Run Maven tests
       run: mvn test
     - run: echo "🎉 This job uses runner scale set runners!"
