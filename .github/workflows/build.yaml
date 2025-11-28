@@ -20,6 +20,9 @@ jobs:
           sudo apt-get update && sudo apt-get install -y maven
         fi
     - name: Run Maven tests
-      run: mvn test
+      run: |
+        pwd
+        ls -la
+        mvn test
       working-directory: ${{ github.workspace }}
     - run: echo "🎉 This job uses runner scale set runners!"
