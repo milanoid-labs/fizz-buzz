@@ -4,7 +4,7 @@ on:
 
 jobs:
   build-with-java:
-    runs-on: arc-runner-set
+    runs-on: homelab-runners
     strategy:
       matrix:
         java-version: [ 17, 21 ]
