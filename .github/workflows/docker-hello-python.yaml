@@ -6,6 +6,8 @@ on:
 jobs:
   hello-python:
     runs-on: homelab-runners
+    container:
+      image: python:3-slim
     steps:
-      - name: Run Python in Docker
-        run: docker run python:3-slim python -c "print('Hello from Python!')"
+      - name: Run Python
+        run: python -c "print('Hello from Python!')"
