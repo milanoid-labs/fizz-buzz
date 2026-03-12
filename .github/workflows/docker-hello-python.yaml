@@ -1,0 +1,13 @@
+name: Docker Hello Python
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hello-python:
+    runs-on: homelab-runners
+    container:
+      image: python:3-slim
+    steps:
+      - name: Run Python
+        run: python -c "print('Hello from Python!')"
