@@ -27,13 +27,13 @@ jobs:
       run: mvn -B -q test
     - name: SonarQube Scan
       if: matrix.java-version == 17
-      uses: SonarSource/sonarqube-scan-action@v5
+      uses: SonarSource/sonarqube-scan-action@v6
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: http://sonar.milanoid.net:9000
     - name: Check Quality Gate
       if: matrix.java-version == 17
-      uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+      uses: SonarSource/sonarqube-quality-gate-action@v1.2.0
       timeout-minutes: 5
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
