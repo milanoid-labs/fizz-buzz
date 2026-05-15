@@ -44,10 +44,13 @@ jobs:
     - name: Build with Maven
       run: mvn -B -q test
     - name: SonarQube Scan
-      run: |
-        mvn -B -q org.sonarsource.scanner.maven:sonar-maven-plugin:5.1.0.4751:sonar \
-          -Dsonar.projectKey=cz.milanoid.fizzbuzz:fizz-buzz \
-          -Dsonar.host.url=http://sonar.milanoid.net:9000 \
-          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+      uses: SonarSource/sonarqube-scan-action@v5
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: http://sonar.milanoid.net:9000
+    - name: Check Quality Gate
+      uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+      timeout-minutes: 5
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: http://sonar.milanoid.net:9000
