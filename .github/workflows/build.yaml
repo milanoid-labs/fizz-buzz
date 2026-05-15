@@ -23,3 +23,12 @@ jobs:
         sudo apt-get install -y maven
     - name: Build with Maven
       run: mvn test
+    - name: SonarQube Scan
+      if: matrix.java-version >= 17
+      run: |
+        mvn sonar:sonar \
+          -Dsonar.projectKey=cz.milanoid.fizzbuzz:fizz-buzz \
+          -Dsonar.host.url=http://sonar.milanoid.net:9000 \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
