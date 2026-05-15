@@ -11,6 +11,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v5.0.1
+      with:
+        fetch-depth: 0
     - name: Set up JDK ${{ matrix.java-version }}
       uses: actions/setup-java@v5.2.0
       with:
@@ -24,11 +26,11 @@ jobs:
     - name: Build with Maven
       run: mvn test
     - name: SonarQube Scan
-      if: matrix.java-version >= 17
+      if: matrix.java-version == 17
       run: |
-        mvn sonar:sonar \
+        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.1.0.4751:sonar \
           -Dsonar.projectKey=cz.milanoid.fizzbuzz:fizz-buzz \
           -Dsonar.host.url=http://sonar.milanoid.net:9000 \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
