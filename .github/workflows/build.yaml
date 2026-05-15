@@ -34,7 +34,7 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: http://sonar.milanoid.net:9000
-        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     - name: Check Quality Gate
       if: matrix.java-version == 17
       uses: SonarSource/sonarqube-quality-gate-action@v1.2.0
