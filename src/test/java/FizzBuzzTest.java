@@ -31,6 +31,32 @@ public class FizzBuzzTest {
         };
     }
 
+    @DataProvider(name = "fizzBuzzEdgeCaseInputs")
+    public Object[][] getEdgeCaseData() {
+        return new Object[][]{
+                {"0", "fizzbuzz"},
+                {"-1", "-1"},
+                {"-3", "fizz"},
+                {"-5", "buzz"},
+                {"-15", "fizzbuzz"},
+                {"+15", "fizzbuzz"},
+                {"2147483647", "2147483647"},
+                {"-2147483648", "-2147483648"},
+        };
+    }
+
+    @DataProvider(name = "fizzBuzzInvalidInputs")
+    public Object[][] getInvalidData() {
+        return new Object[][]{
+                {null},
+                {""},
+                {"abc"},
+                {"3.14"},
+                {" 3"},
+                {"3 "},
+        };
+    }
+
 
     @BeforeClass
     public void setUp() {
@@ -41,6 +67,16 @@ public class FizzBuzzTest {
     @Test(dataProvider = "fizzBuzzTestInputs")
     public void fizzBuzzTestWithDataProvider(String input, String output) {
         assertEquals(fizzBuzz.convert(input), output);
+    }
+
+    @Test(dataProvider = "fizzBuzzEdgeCaseInputs")
+    public void fizzBuzzEdgeCaseTestWithDataProvider(String input, String output) {
+        assertEquals(fizzBuzz.convert(input), output);
+    }
+
+    @Test(dataProvider = "fizzBuzzInvalidInputs", expectedExceptions = NumberFormatException.class)
+    public void fizzBuzzInvalidInputsShouldThrowNumberFormatException(String input) {
+        fizzBuzz.convert(input);
     }
 
 }
