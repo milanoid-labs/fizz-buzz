@@ -1,3 +1,3 @@
 # fizz-buzz test
 
-Just another FizzBuzz test. 
+Just another FizzBuzz test. Yo!
