@@ -52,7 +52,7 @@ jobs:
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
     - name: Check Quality Gate
       if: matrix.java-version == 17
-      uses: SonarSource/sonarqube-quality-gate-action@v1.2.0
+      uses: SonarSource/sonarqube-quality-gate-action@v1.2.1
       timeout-minutes: 5
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
