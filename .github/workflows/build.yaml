@@ -1,6 +1,12 @@
 name: Java matrix build
 on:
   workflow_dispatch:
+    inputs:
+      runs-on:
+        description: Runner label
+        default: homelab-runners-vm
+        type: choice
+        options: [homelab-runners-vm, homelab-runners]
   pull_request:
     types: [opened, synchronize, reopened]
   push:
